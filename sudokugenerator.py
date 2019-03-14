@@ -1,24 +1,31 @@
 import random
 import math
+# required libraries
 
-verbose = False
-count = 1
-size = 16
+verbose = False  # debug command to help track down issues and see some more information during construction
+count = 1  # how many grids to produce
+size = 16 # how large (both height and width) the grid should be
 
-def gridPrint(grid):
+# a function to print a grid (2d list) in a human readable way
+def gridPrint(grid): 
   for i in range(len(grid)):
     print(grid[i])
   print()
 
+# the box object represents the boxes in the sudoku grid,
 class Box:
+  # the raw box coords of the box, not the grid coords
   def __init__(self,coords):
     self.coords = coords
+  # a pretty print function that lists the information of the cell
   def pp(self):
     for i in range(len(coords)):
       print(self.coords[i]," ",end="")
     print()
 
-def sudokuGridPrint(grid,size,hsize,vsize):
+# a function that uses Unicode border characters to make a sudoku grid (this depends on the actual font of the terminal
+# and is not great in some fonts because border characters are not handled great).
+def sudokuGridPrint(grid,size,hsize,vsize):  
   charspace = len(str(len(grid)))
   for i in range(2*size+1):
     if i == 0:
